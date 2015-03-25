@@ -1,0 +1,6 @@
+# Ignore everything
+stm32l-discovery/*
+
+# But not these files...
+!.gitignore
+!stm32l-discovery.ioc
