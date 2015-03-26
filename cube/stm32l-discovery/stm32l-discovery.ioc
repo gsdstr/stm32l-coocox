@@ -1,7 +1,9 @@
 #MicroXplorer Configuration settings - do not modify
-#Thu Mar 26 09:58:14 YEKT 2015
-FREERTOS.IPParameters=Tasks01
-FREERTOS.Tasks01=defaultTask,0,128,StartDefaultTask;blueTask,-2,128,BlueTask
+#Thu Mar 26 12:14:41 YEKT 2015
+FREERTOS.IPParameters=Queues01,Tasks01,configTOTAL_HEAP_SIZE
+FREERTOS.Queues01=xLCDQueue,4,xLCDMessage,NULL
+FREERTOS.Tasks01=defaultTask,0,128,StartDefaultTask;blueTask,-2,128,BlueTask;lcdTask,-1,256,StartLCDTask
+FREERTOS.configTOTAL_HEAP_SIZE=6000
 File.Version=5
 KeepUserPlacement=false
 Mcu.Family=STM32L1
@@ -22,7 +24,8 @@ MxDb.Version=DB.4.0.70
 NVIC.EXTI0_IRQn=true\:5\:0\:false
 NVIC.PriorityGroup=NVIC_PRIORITYGROUP_4
 NVIC.SysTick_IRQn=true\:0\:0\:false
-PA0-WKUP1.GPIOParameters=GPIO_PuPd,GPIO_ModeDefaultEXTI
+PA0-WKUP1.GPIOParameters=GPIO_PuPd,GPIO_Label,GPIO_ModeDefaultEXTI
+PA0-WKUP1.GPIO_Label=USER_BUTTON
 PA0-WKUP1.GPIO_ModeDefaultEXTI=GPIO_MODE_IT_RISING
 PA0-WKUP1.GPIO_PuPd=GPIO_NOPULL
 PA0-WKUP1.Locked=true

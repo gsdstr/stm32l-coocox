@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * File Name          : main.c
-  * Date               : 26/03/2015 09:58:14
+  * Date               : 26/03/2015 12:14:42
   * Description        : Main program body
   ******************************************************************************
   *
@@ -34,15 +34,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l1xx_hal.h"
-#include "cmsis_os.h"
+#include "main.h"
 
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 osThreadId defaultTaskHandle;
 osThreadId blueTaskHandle;
+osThreadId lcdTaskHandle;
+osMessageQId xLCDQueueHandle;
 
 /* USER CODE BEGIN PV */
 
@@ -53,6 +54,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 void StartDefaultTask(void const * argument);
 void BlueTask(void const * argument);
+void StartLCDTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -66,7 +68,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  LCD_Init();
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -105,9 +107,18 @@ int main(void)
   osThreadDef(blueTask, BlueTask, osPriorityLow, 0, 128);
   blueTaskHandle = osThreadCreate(osThread(blueTask), NULL);
 
+  /* definition and creation of lcdTask */
+  osThreadDef(lcdTask, StartLCDTask, osPriorityBelowNormal, 0, 256);
+  lcdTaskHandle = osThreadCreate(osThread(lcdTask), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
+
+  /* Create the queue(s) */
+  /* definition and creation of xLCDQueue */
+  osMessageQDef(xLCDQueue, 4, xLCDMessage);
+  xLCDQueueHandle = osMessageCreate(osMessageQ(xLCDQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -209,9 +220,13 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
+	//uint8_t * LCD_String = "123";
+	uint8_t LCD_String[]= "123";
+
   for(;;)
   {
-    osDelay(1);
+    osDelay(1000);
+    LCD_DisplayString(LCD_String);
   }
   /* USER CODE END 5 */ 
 }
