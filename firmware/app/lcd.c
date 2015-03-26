@@ -42,8 +42,8 @@ void StartLCDTask(void const * argument)
 			//BSP_LCD_GLASS_DisplayString(pcBlankLine);
 			message = evt.value.v;
 			if (message->xMessageType == 10){
-				BSP_LCD_GLASS_DisplayString(message->pcMessage);
 				BSP_LCD_GLASS_DisplayString(pcBlankLine);
+				BSP_LCD_GLASS_DisplayString(message->pcMessage);
 				osDelay(800);
 			}
 			osPoolFree(mPoolId, message);

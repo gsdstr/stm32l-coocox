@@ -1,5 +1,5 @@
 #MicroXplorer Configuration settings - do not modify
-#Thu Mar 26 17:29:38 YEKT 2015
+#Thu Mar 26 17:42:44 YEKT 2015
 ADC.Channel-8\#ChannelRegularConversion=ADC_CHANNEL_4
 ADC.IPParameters=NbrOfConversionFlag,Channel-8\#ChannelRegularConversion
 ADC.NbrOfConversionFlag=1
