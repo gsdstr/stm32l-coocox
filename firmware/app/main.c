@@ -117,7 +117,7 @@ int main(void)
 
   /* Create the queue(s) */
   /* definition and creation of xLCDQueue */
-  osMessageQDef(xLCDQueue, 4, xLCDMessage);
+  osMessageQDef(xLCDQueue, 8, xLCDMessage);
   xLCDQueueHandle = osMessageCreate(osMessageQ(xLCDQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -225,7 +225,7 @@ void StartDefaultTask(void const * argument)
 
   for(;;)
   {
-    osDelay(1000);
+    osDelay(3000);
     LCD_DisplayString(LCD_String);
   }
   /* USER CODE END 5 */ 

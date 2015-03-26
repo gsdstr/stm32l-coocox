@@ -14,7 +14,6 @@ typedef struct
 {
 	uint8_t *pcMessage;
 	uint8_t xMessageType;
-	uint8_t zzz; //TODO
 } xLCDMessage;
 
 void LCD_Init(void);
