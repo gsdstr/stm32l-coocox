@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    stm32l1xx_it.h
-  * @date    25/03/2015 15:10:53
+  * @date    26/03/2015 09:58:14
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   *
@@ -46,6 +46,7 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 
+void EXTI0_IRQHandler(void);
 void SysTick_Handler(void);
 
 #ifdef __cplusplus
